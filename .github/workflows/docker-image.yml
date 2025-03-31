@@ -1,0 +1,36 @@
+name: Docker Image CI
+
+on: [push]
+   
+
+jobs:
+  checkout:
+  
+  #build:
+    name: Build the Docker image
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Docker
+        uses: docker-practice/actions-setup-docker@v1
+        with:
+          docker_version: '22.04'
+          
+      - name: Build the image
+        run: docker build -f Dockerfile -t mywebapp:latest .
+
+      - name: Push Image
+        run: |
+         docker login -u ${{ secrets.REPO_USER }} -p ${{ secrets.REPO_PWD }} 
+         docker tag mywebapp:latest dianelg/dgdemo:1.0
+         docker push dianelg/dgdemo:1.0
+        
+      
+
+    #steps:
+    #- uses: actions/checkout@v4
+    #- name: Build the Docker image
+     # run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
