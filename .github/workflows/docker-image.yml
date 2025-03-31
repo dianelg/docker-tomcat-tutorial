@@ -29,6 +29,9 @@ jobs:
          docker login -u ${{ secrets.REPO_USER }} -p ${{ secrets.REPO_PWD }} 
          docker tag mywebapp:latest dianelg/dgdemo:1.0
          docker push dianelg/dgdemo:1.0
+
+      - name: Run the container
+        run: docker run -dp 8080:8080 mywebapp:latest
         
       
 
