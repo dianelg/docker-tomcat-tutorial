@@ -31,7 +31,9 @@ jobs:
          docker push dianelg/dgdemo:1.0
 
       - name: Run the container
-        run: docker run -dp 8080:8080 mywebapp:latest
+        run: |
+           docker run -dp 8080:8080 mywebapp:latest
+           docker ps
         
       
 
