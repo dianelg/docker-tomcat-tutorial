@@ -4,9 +4,8 @@ on: [push]
    
 
 jobs:
-  checkout:
+  build:
   
-  #build:
     name: Build the Docker image
     runs-on: ubuntu-latest
 
